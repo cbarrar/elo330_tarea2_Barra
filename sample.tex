@@ -1,0 +1,68 @@
+\documentclass[]{article}
+
+%%%%%%%%%%%%%%%%%%%
+% Packages/Macros %
+%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb,latexsym,amsmath}     % Standard packages
+%%%%%%%%%%%
+% Margins %
+%%%%%%%%%%%
+\addtolength{\textwidth}{1.0in}
+\addtolength{\textheight}{1.00in}
+\addtolength{\evensidemargin}{-0.75in}
+\addtolength{\oddsidemargin}{-0.75in}
+\addtolength{\topmargin}{-.50in}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem/Proof Environments %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Theorem}
+\newenvironment{proof}{\noindent{\bf Proof:}}{$\hfill \Box$ \vspace{10pt}}  
+
+
+%%%%%%%%%%%%
+% Document %
+%%%%%%%%%%%%
+\begin{document}
+
+\title{ELO-330: Programación de Sistemas\\
+\textbf{Tarea 2: Procesando audio usando código libre}}
+\author{Camilo Barra R}
+\date{}
+\maketitle
+
+\section{Introducción}
+Una de las grandes ventajas de programar usando pipes es el hecho de que se
+pueden utilizar aplicaciones externas al programa, es decir, como programador
+no es necesario rediseñar programas, que ya realizan de forma eficiente una tarea,
+más bien como programar, se deben traducir las instrucciones para poder comunicarle a programa externo lo que se desea y captar la salida si así se lo quiere.
+
+\section{Descripción del programa}
+El programa permite poder recuperar audio en formato PCM cuando la señal
+se satura. Para apreciar la saturación y la ”recuperación” de la señal (usando interpolación de polinomios) se gráfica el audio original, el saturado y el recuperado, además se reproducen las señales ya mencionadas.
+
+\section{Requerimientos para Ubuntu}
+Para poder ejecutar la inaplicación se deben instalar octave (suministra la interpolación y los gráficos) y aplay (reproduce el audio) mediante las siguientes lineas
+de comandos:
+\begin{itemize}
+\item \textbf{sudo apt-get install aplay}
+\item \textbf{sudo apt-get install octave}
+\end{itemize}
+
+\section{Ejecución}
+Para poder ejecutar el programa se debe realizar la siguiente instrucción:
+\begin{center}
+\textbf{csa audio ganancia offset p}
+\end{center}
+• audio: es la pista de audio en formato PCM, little endian, con signo y de
+16 bits con frecuencia de muestreo debe ser de 8[KHz].
+• ganancia: representa la saturación  que afecta al audio (debe ser mayor
+que 0).
+• offset: representa es desplazamiento en el gráfico que se desea (se considera
+en múltiplos de 0.125[ms])
+• p: indica si se desea reproducir los 3 audios.
+
+\section{Problema}
+Existe un error en la ejecución del programa, cuando se llama a \textit{interpolation} (linea 180), dicha función funciona correctamente para n bytes, pero al usar el tamaño completo del audio al ejecutar lanza un error de desbordamiento de buffers. 
+Para poder apreciar que el programa realizar los gráficos junto con la reproducción del audio comentar la linea 180 , generando que no se intente interpolar polinomios para recuperar el audio saturado.
+\end{document}
