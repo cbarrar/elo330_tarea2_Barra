@@ -16,9 +16,4 @@ Para ejecutar el programa se debe realizar la siguiente instrucción desde conso
 
      csa   <archivo_de_audio_original>  <ganancia> <offset> [p]
 Donde: ganancia: corresponde al valor en que se desea saturar el audio original. offset: es la cantidad de tiempo que se desplazar el gráfico, se considera múltiplo de 0.125[ms]. p: indica si se desea o no reproducir los audios: original, saturado y recuperado.
-
-PROBLEMA
--------------------------------
-
-Al momento de interpolar usando octave existe un problema de desbordamiento de buffers, por cuestión de tiempo este problema no se resolvió, cabe señalar que el programa se comunica correctamente con octave y se reciben los valores recuperados, pero al momento de asignarlos se hace de forma errónea. Para poder visualizar y reproducir los audios se debe comentar la linea 152 (donde se llama a interpolatation).
-        
+    
