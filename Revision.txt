@@ -1,0 +1,25 @@
+Revisión del ayudante:
+Camilo Barra
+
+Documentación (30%):				80
+Compilación (10%):					100
+Ejecución (60%):
+* Interpretación del archivo (10%):	100
+* Gráficos (25%):					70
+* Reproducción (15%):				100
+* Índice de error (10%):			0
+-----------------------------
+Total:								77
+
+Comentarios:
+* En la documentación extrañé una breve explicación de qué hace cada función en tu solución. Sin embargo el código está bien documentado.
+* Muy buen detalle haberle puesto un porcentaje de progreso, eso es MUY buena costumbre hacer en códigos que tarden mucho en ejecutarse.
+* El programa no espera un "input" del usuario para salir, luego de generar los gráficos.
+* No se muestra el índice de error.
+
+Notas aparte:
+* El warning de la línea 251 lo puedes evitar de al menos dos formas:
+	- Usar fprintf(sd, "%s", title);
+	- Usar fputs(title, sd);
+* No liberaste memoria, cuidado con eso.
+* Ocupaste arreglos de 40 caracteres para el nombre del archivo. Es muy posible que te quedes corto. Emplea PATH_MAX de la biblioteca <sys/syslimits.h>
